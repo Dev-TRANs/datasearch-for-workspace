@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_top">
+    <title>Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="claspIgnore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1" id="serviceTitle">Data Search</span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="mt-4">
+            <label for="serviceTitleSetting"
+                class="form-label border-start border-3 border-dark ps-2 py-1">サービス名</label>
+            <input type="text" class="form-control" id="serviceTitleSetting" placeholder="Data Search" value="">
+        </div>
+        <div class="mt-4">
+            <label for="resultsDesignSetting"
+                class="form-label border-start border-3 border-dark ps-2 py-1">検索結果のデザイン</label>
+            <textarea class="form-control" id="resultsDesignSetting" placeholder="" rows="3"></textarea>
+        </div>
+        <div class="alert alert-secondary mt-2" role="alert">
+            ヒント：<br>{A},{B}などでスプレッドシートの列データを取得できます。
+        </div>
+        <p class="border-start border-3 border-dark ps-2 py-1 mt-3">プレビュー</p>
+        <div class="card">
+            <div class="card-body" id="previewBox"></div>
+        </div>
+        <button type="button" class="btn btn-outline-success mt-4" onclick="saveSettings()">変更を保存</button>
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("resultsDesignSetting").addEventListener("input", () => {
+                document.getElementById("previewBox").innerHTML = marked.parse(document.getElementById("resultsDesignSetting").value)
+            });
+        })
+
+        function saveSettings(){
+            console.log("hello")
+        }
+    </script>
+</body>
+
+</html>
